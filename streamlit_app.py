@@ -2,11 +2,17 @@ import streamlit as st
 import numpy as np
 import plotly.graph_objects as go
 import pandas as pd
+import webbrowser
 
 
 # Helper function for the main page
 def main():
     st.title('Sankey Diagram Web Application')
+         
+    url = 'https://github.com/Henry-Lim/SankeyDiagram'
+
+    if st.button('View Source code'):
+        webbrowser.open_new_tab(url)
     
     file = st.file_uploader("Upload file", type=['txt', 'csv']) # Upload file
     
@@ -23,7 +29,7 @@ def main():
                                           "target": df.target,
                                           "value": df.value}))
         st.write(fig)
-    
+
 
 if __name__ == "__main__": 
     main()
