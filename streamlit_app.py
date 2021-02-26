@@ -8,11 +8,9 @@ import webbrowser
 # Helper function for the main page
 def main():
     st.title('Sankey Diagram Web Application')
-         
-    url = 'https://github.com/Henry-Lim/SankeyDiagram'
-
-    if st.button('View Source code'):
-        webbrowser.open_new_tab(url)
+        
+    link = '[View Source Code](https://github.com/Henry-Lim/SankeyDiagram)'
+    st.markdown(link, unsafe_allow_html=True)
     
     file = st.file_uploader("Upload file", type=['txt', 'csv']) # Upload file
     
