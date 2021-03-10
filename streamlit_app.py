@@ -19,7 +19,7 @@ def main():
 
     if st.button('Plot'):
         fig = go.Figure(go.Sankey(arrangement = "snap", 
-                                  node = {"label": df.label,
+                                  node = {"label": df.label + str(df.value),
                                           "x": df.x,
                                           "y": df.y,
                                           "pad":10},  # 10 Pixels                          
