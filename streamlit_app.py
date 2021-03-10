@@ -18,8 +18,22 @@ def main():
         df = pd.read_csv(file)
 
     if st.button('Plot'):
+        
+        label_names = df.label[df.label.notnull()].tolist()
+        label_vals = np.zeros(len(label_names))
+        label_dict = {}
+        targsvals = df[['target', 'value']]
+        for i in range(len(targsvals)):
+            target, value = targsvals.iloc[i]
+            label_vals[target] += value
+
+        for i in range(len(label_names)):
+            label_dict[label_names[i]] = label_vals[i]
+
+        label_insert = [f"{name}:{label_dict[name]}" for name in label_dict]
+        
         fig = go.Figure(go.Sankey(arrangement = "snap", 
-                                  node = {"label": df.label + str(df.value),
+                                  node = {"label": label_insert,
                                           "x": df.x,
                                           "y": df.y,
                                           "pad":10},  # 10 Pixels                          
