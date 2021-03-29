@@ -26,7 +26,6 @@ def main():
         #Say if labels are 'A', 'B', 'C' - these labels are represented as 0, 1, 2 in numeric representation
         numeric = True
         
-        #if target/source not in numeric mode":
         
         #get label names for diagram
         label_names = df.label[df.label.notnull()].tolist()
@@ -75,7 +74,16 @@ def main():
                                   link = {"source": source,
                                           "target": target,
                                           "value": df.value}))
-        st.write(fig)
+        config = {
+          'toImageButtonOptions': {
+            'format': 'svg', # one of png, svg, jpeg, webp
+            'filename': 'custom_image',
+            'height': 500,
+            'width': 700,
+            'scale': 1 # Multiply title/legend/axis/canvas sizes by this factor
+          }
+        }
+        st.plotly_chart(fig, config=config)
 
 
 if __name__ == "__main__": 
